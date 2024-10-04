@@ -2,7 +2,7 @@ import pygame
 from sys import exit
 from os.path import join
 
-CELL_SIZE = 80
+CELL_SIZE = 60
 ROWS = 10
 COLS = 16
 WINDOW_WIDTH = COLS * CELL_SIZE
@@ -11,7 +11,7 @@ WINDOW_HEIGHT = ROWS * CELL_SIZE
 
 #this color
 LIGHT_GREEN = "#aad751"
-DARK_GREEN = "#a2d149"
+DARK_GREEN = "#aff25a"
 
 #start pos
 START_LENGTH = 3
