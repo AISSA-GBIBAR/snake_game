@@ -29,6 +29,7 @@ class Main:
                     pygame.quit()
                     exit()
             self.draw_bg()
+            self.snake.draw()
             pygame.display.update() # ! Updates the display window in every loop iteration
 
 if __name__ == "__main__":
