@@ -1,5 +1,5 @@
 from settings import *
-
+from snak import Snake
 class Main:
     def __init__(self):
         pygame.init()
@@ -7,10 +7,18 @@ class Main:
         pygame.display.set_caption("Snake Game By Aissa Gbibar")
         
         #game object 
-        self.bg_rects = [pygame.Rect((col + int(row % 2 == 0)) * CELL_SIZE, row*CELL_SIZE,CELL_SIZE, CELL_SIZE) 
-                         for col in range(0,COLS, 2) for row in range(ROWS)]
-    
+        # ? create a rectangle object in Pygame
+        self.bg_rects = [
+            pygame.Rect(
+                (col + int(row % 2 == 0)) * CELL_SIZE,  # X-coordinate
+                row*CELL_SIZE,# Y-coordinate
+                CELL_SIZE, # Width of the rectangle
+                CELL_SIZE) # Height of the rectangle    
+                for col in range(0,COLS, 2) # Iterates over columns, skipping every other column (step of 2)
+                for row in range(ROWS)] # Iterates over rows
+        self.snake = Snake()
     def draw_bg(self):
+        self.display_surface.fill(LIGHT_GREEN)
         for rect in self.bg_rects:
             pygame.draw.rect(self.display_surface, DARK_GREEN , rect )
         
@@ -20,7 +28,6 @@ class Main:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-            self.display_surface.fill(LIGHT_GREEN)
             self.draw_bg()
             pygame.display.update() # ! Updates the display window in every loop iteration
 
