@@ -6,7 +6,7 @@ class Snake:
         self.body = [pygame.Vector2(START_COL - col, START_ROW) for col in range(START_LENGTH)]
         self.direction = pygame.Vector2(1, 0)
     def update(self):
-        body_copy = self.body[:]    
+        body_copy = self.body[:-1]    
         # 1 . get the head and move the head direction
         new_head = self.body[0] + self.direction
         # 2 . insert the new head at index 0

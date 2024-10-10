@@ -19,6 +19,11 @@ class Main:
                 for row in range(ROWS)] # Iterates over rows
         self.snake = Snake()
         self.apple = Apple(self.snake)
+        
+        # timer 
+        self.update_event = pygame.event.custom_type()
+        pygame.time.set_timer(self.update_event, 200)
+        
     def draw_bg(self):
         self.display_surface.fill(LIGHT_GREEN)
         for rect in self.bg_rects:
@@ -30,9 +35,10 @@ class Main:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-            # Update the snake body
-            self.snake.update()
-            
+                if event.type == self.update_event:
+                    # Update the snake body
+                    self.snake.update()
+                
             # drwaing         
             self.draw_bg()
             self.snake.draw()
