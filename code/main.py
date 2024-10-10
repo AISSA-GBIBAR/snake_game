@@ -28,7 +28,14 @@ class Main:
         self.display_surface.fill(LIGHT_GREEN)
         for rect in self.bg_rects:
             pygame.draw.rect(self.display_surface, DARK_GREEN , rect )
-        
+    
+    def input(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RIGHT]: self.snake.direction = pygame.Vector2(1, 0)
+        if keys[pygame.K_LEFT]: self.snake.direction = pygame.Vector2(-1, 0)
+        if keys[pygame.K_UP]: self.snake.direction = pygame.Vector2(0, -1)
+        if keys[pygame.K_DOWN]: self.snake.direction = pygame.Vector2(0, 1)
+    
     def run(self):
         while True:
             for event in pygame.event.get(): # ! Polls for all events in the event queue
@@ -38,7 +45,10 @@ class Main:
                 if event.type == self.update_event:
                     # Update the snake body
                     self.snake.update()
-                
+            
+            #moving snake body
+            self.input()
+            
             # drwaing         
             self.draw_bg()
             self.snake.draw()
