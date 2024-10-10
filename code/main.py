@@ -31,10 +31,19 @@ class Main:
     
     def input(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]: self.snake.direction = pygame.Vector2(1, 0)
-        if keys[pygame.K_LEFT]: self.snake.direction = pygame.Vector2(-1, 0)
-        if keys[pygame.K_UP]: self.snake.direction = pygame.Vector2(0, -1)
-        if keys[pygame.K_DOWN]: self.snake.direction = pygame.Vector2(0, 1)
+        if keys[pygame.K_RIGHT]: 
+            self.snake.direction = pygame.Vector2(1, 0) if self.snake.direction.x != -1 else self.snake.direction
+        if keys[pygame.K_LEFT]: 
+            self.snake.direction = pygame.Vector2(-1, 0) if self.snake.direction.x != 1 else self.snake.direction
+        if keys[pygame.K_UP]: 
+            self.snake.direction = pygame.Vector2(0, -1) if self.snake.direction.y != 1 else self.snake.direction
+        if keys[pygame.K_DOWN]: 
+            self.snake.direction = pygame.Vector2(0, 1) if self.snake.direction.y != -1 else self.snake.direction
+    
+    def collision(self):
+        if self.snake.body[0] ==  self.apple.pos:
+            self.snake.has_eaten = True
+            self.apple.set_pos()
     
     def run(self):
         while True:
@@ -46,8 +55,9 @@ class Main:
                     # Update the snake body
                     self.snake.update()
             
-            #moving snake body
+            #moving snake 
             self.input()
+            self.collision()
             
             # drwaing         
             self.draw_bg()

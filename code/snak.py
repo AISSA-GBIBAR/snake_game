@@ -5,8 +5,14 @@ class Snake:
         self.display_surface = pygame.display.get_surface()
         self.body = [pygame.Vector2(START_COL - col, START_ROW) for col in range(START_LENGTH)]
         self.direction = pygame.Vector2(1, 0)
+        
+        self.has_eaten = False
     def update(self):
-        body_copy = self.body[:-1]    
+        if not self.has_eaten:
+            body_copy = self.body[:-1]   
+        else:
+            body_copy = self.body[:]   
+            self.has_eaten = False
         # 1 . get the head and move the head direction
         new_head = self.body[0] + self.direction
         # 2 . insert the new head at index 0
