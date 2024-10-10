@@ -30,6 +30,10 @@ class Main:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
+            # Update the snake body
+            self.snake.update()
+            
+            # drwaing         
             self.draw_bg()
             self.snake.draw()
             self.apple.draw()
