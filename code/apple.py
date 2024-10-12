@@ -7,6 +7,8 @@ class Apple:
         self.display_surface = pygame.display.get_surface()
         self.snake = snake
         self.set_pos()
+        
+        self.surf = pygame.image.load(join('..', "graphics", "apple.png")).convert_alpha()
     def set_pos(self):
         available_pos = [pygame.Vector2(x, y) for x in range(COLS) for y in range(ROWS)
                          if pygame.Vector2(x, y) not in self.snake.body]
